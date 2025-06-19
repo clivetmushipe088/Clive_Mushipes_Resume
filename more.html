@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Projects</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Project Slider Styles */
+    .project-slider {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    .project-container {
+      flex: 1;
+      text-align: center;
+      padding: 40px;
+      background: #1a1a1a;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+      color: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .project-title {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .project-description {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .nav-btn {
+      font-size: 24px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #f39c12;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+    }
+
+    @media screen and (max-width: 768px) {
+      .project-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="main.html">Home</a></li>
+      <li><a href="more.html">More Info</a></li>
+      <li><button id="toggleMode">🌓</button></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>My Projects</h2>
+    
+    <div class="project-slider">
+      <button class="nav-btn" id="prevBtn">&#10094;</button>
+
+      <div class="project-container" id="projectDisplay">
+        <!-- Project content inserted via JavaScript -->
+      </div>
+
+      <button class="nav-btn" id="nextBtn">&#10095;</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const projects = [
+      {
+        title: "Portfolio Website",
+        description: "A responsive portfolio website built with HTML, CSS, and JavaScript to showcase my resume, skills, and projects.https://github.com/clivetmushipe088/Clive_Mushipes_Resume.git"
+      },
+      {
+        title: "strathmore student teacher website",
+        description: "A website created to handle meetings between student and teachers, where students can request meetings and teachers can managing meeting times. "
+      },
+      {
+        title: "Weather Dashboard",
+        description: "A weather app that uses the OpenWeatherMap API to show real-time weather conditions based on user input.https://github.com/clivetmushipe088/playing_with_apis_recipe-finder.git"
+      }
+    ];
+
+    let currentIndex = 0;
+    const display = document.getElementById("projectDisplay");
+
+    function showProject(index) {
+      const project = projects[index];
+      display.innerHTML = `
+        <h3 class="project-title">${project.title}</h3>
+        <p class="project-description">${project.description}</p>
+      `;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+      showProject(currentIndex);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % projects.length;
+      showProject(currentIndex);
+    });
+
+    // Show first project on load
+    showProject(currentIndex);
+  </script>
+</body>
+</html>
